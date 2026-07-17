@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  /* Keyframes are allowed inside @theme */
+  @keyframes rgb-wave {
+    from { background-position: 0% center; }
+    to { background-position: -200% center; }
+  }
+}
+
+/* Standard CSS classes go OUTSIDE the @theme block */
+.animate-rgb-wave {
+  animation: rgb-wave 10s linear infinite;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
