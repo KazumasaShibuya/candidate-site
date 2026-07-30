@@ -336,78 +336,70 @@ function App() {
                 </GlassCard>
               </motion.div>
 
-              {/* 2. instagram (1x1 Square) */}
-              <motion.div variants={itemVariants} className="aspect-square">
-                <GlassCard className="h-full p-0 overflow-hidden group border-pink-500/100 hover:border-blue-500/50 transition-colors">
-                  <a
-                    href="https://www.instagram.com/nakagawa.akihiro_/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative z-20 h-full w-full flex flex-col items-center justify-center p-4 text-center"
-                  >
-                    {/* 2. Color starts white/gray and changes to instagram blue only on hover */}
-                    <FaInstagram
-                      size={85}
-                      className="text-pink-500 scale-150 translate-y-25"
-                    />
+              {/* Instagram (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-pink-500/100 hover:border-blue-500/50 transition-colors">
+                    <a
+                      href="https://www.instagram.com/nakagawa.akihiro_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-3 p-4 text-center"
+                    >
+                      <FaInstagram
+                        className="w-30 h-30 text-pink-500"
+                      />
 
-                    <span className="mt-6 text-[20px] font-mono uppercase tracking-[0.2em] text-neutral-800 translate-y-25">
-                      {data.insta}
-                    </span>
-                  </a>
-                </GlassCard>
-              </motion.div>
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {data.insta}
+                      </span>
+                    </a>
+                  </GlassCard>
+                </motion.div>
 
-              {/* Email (1x1 Square) */}
-                  <motion.div variants={itemVariants} className="aspect-square">
-                    <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
-                      <button
-                        onClick={copyEmail}
-                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-20 cursor-pointer"
-                      >
-                        {emailCopied ? (
-                          <FaCheck
-                            className="w-24 h-24 text-green-500 mb-6"
-                          />
-                        ) : (
-                          <FaEnvelope
-                            className="w-24 h-24 text-blue-500 mb-6"
-                          />
-                        )}
 
-                        <span className="text-xl font-semibold text-neutral-800">
-                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
-                        </span>
+                {/* Email (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
+                    <button
+                      onClick={copyEmail}
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-4 p-4 text-center cursor-pointer"
+                    >
+                      {emailCopied ? (
+                        <FaCheck className="w-24 h-24 text-green-500" />
+                      ) : (
+                        <FaEnvelope className="w-24 h-24 text-blue-500" />
+                      )}
 
-                        <span className="mt-2 text-xl text-neutral-500 break-all">
-                          {data.email}
-                        </span>
-                      </button>
-                    </GlassCard>
-                  </motion.div>
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {emailCopied ? "コピーしました！" : "お問い合わせ"}
+                      </span>
 
-              {/* Phone (1x1 Square) */}
+                      <span className="text-xl text-neutral-500 break-all">
+                        {data.email}
+                      </span>
+                    </button>
+                  </GlassCard>
+                </motion.div>
+
+
+                {/* Phone (1x1 Square) */}
                 <motion.div variants={itemVariants} className="aspect-square">
                   <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
                     <button
                       onClick={copyPhone}
-                      className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-20 cursor-pointer"
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-4 p-4 text-center cursor-pointer"
                     >
                       {phoneCopied ? (
-                        <FaCheck
-                          className="w-24 h-24 text-green-500 mb-6"
-                        />
+                        <FaCheck className="w-22 h-22 text-green-500" />
                       ) : (
-                        <FaPhone
-                          className="w-24 h-24 text-green-500 mb-6"
-                        />
+                        <FaPhone className="w-22 h-22 text-green-500" />
                       )}
 
                       <span className="text-xl font-semibold text-neutral-800">
                         {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
                       </span>
 
-                      <span className="mt-2 text-xl text-neutral-500 break-all">
+                      <span className="text-xl text-neutral-500 break-all">
                         {data.phone}
                       </span>
                     </button>
@@ -531,87 +523,75 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                  {/* 2. instagram (1x1 Square) */}
-                  <motion.div variants={itemVariants} className="aspect-square">
-                    <GlassCard className="h-full p-0 overflow-hidden group border-pink-500/100">
-                      <a
-                        href="https://www.instagram.com/nakagawa.akihiro_/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-4 text-center"
-                      >
-                        {/* 2. Color starts white/gray and changes to instagram pink only on hover */}
-                        <FaInstagram
-                          size={85}
-                          className="text-neutral-600 text-pink-500 scale-130 translate-y-13"
-                        />
+                  {/* Instagram (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-pink-500/100 hover:border-blue-500/50 transition-colors">
+                    <a
+                      href="https://www.instagram.com/nakagawa.akihiro_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-3 p-4 text-center"
+                    >
+                      <FaInstagram
+                        className="w-30 h-30 text-pink-500"
+                      />
 
-                        <span className="mt-6 text-[20px] font-mono uppercase tracking-[0.2em] text-neutral-800 translate-y-10 translate-x-1">
-                          {data.insta}
-                        </span>
-                      </a>
-                    </GlassCard>
-                  </motion.div>
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {data.insta}
+                      </span>
+                    </a>
+                  </GlassCard>
+                </motion.div>
 
-                  {/* Email (1x1 Square) */}
-                  <motion.div variants={itemVariants} className="aspect-square">
-                    <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
-                      <button
-                        onClick={copyEmail}
-                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-8 cursor-pointer"
-                      >
-                        {emailCopied ? (
-                          <FaCheck
-                            size={85}
-                            className="text-green-500 mb-6"
-                          />
-                        ) : (
-                          <FaEnvelope
-                            size={85}
-                            className="text-blue-500 mb-6"
-                          />
-                        )}
 
-                        <span className="text-lg font-semibold text-neutral-800">
-                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
-                        </span>
+                {/* Email (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
+                    <button
+                      onClick={copyEmail}
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-4 p-4 text-center cursor-pointer"
+                    >
+                      {emailCopied ? (
+                        <FaCheck className="w-22 h-22 text-green-500" />
+                      ) : (
+                        <FaEnvelope className="w-22 h-22 text-blue-500" />
+                      )}
 
-                        <span className="mt-2 text- text-neutral-500 break-all">
-                          nakagawa@shibuyasyoukai.com
-                        </span>
-                      </button>
-                    </GlassCard>
-                  </motion.div>
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {emailCopied ? "コピーしました！" : "お問い合わせ"}
+                      </span>
 
-                  {/* Phone (1x1 Square) */}
-                    <motion.div variants={itemVariants} className="aspect-square">
-                      <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
-                        <button
-                          onClick={copyPhone}
-                          className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-10 cursor-pointer"
-                        >
-                          {phoneCopied ? (
-                            <FaCheck
-                              size={72}
-                              className="text-green-500 mb-6"
-                            />
-                          ) : (
-                            <FaPhone
-                              size={72}
-                              className="text-green-500 mb-6"
-                            />
-                          )}
+                      <span className="text-2xl text-neutral-500 break-all">
+                        {data.email}
+                      </span>
+                    </button>
+                  </GlassCard>
+                </motion.div>
 
-                          <span className="text-lg font-semibold text-neutral-800">
-                            {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
-                          </span>
 
-                          <span className="mt-2 text-lg text-neutral-500 break-all">
-                            {data.phone}
-                          </span>
-                        </button>
-                      </GlassCard>
-                    </motion.div>
+                {/* Phone (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
+                    <button
+                      onClick={copyPhone}
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center gap-4 p-4 text-center cursor-pointer"
+                    >
+                      {phoneCopied ? (
+                        <FaCheck className="w-20 h-20 text-green-500" />
+                      ) : (
+                        <FaPhone className="w-20 h-20 text-green-500" />
+                      )}
+
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                      </span>
+
+                      <span className="text-2xl text-neutral-500 break-all">
+                        {data.phone}
+                      </span>
+                    </button>
+                  </GlassCard>
+                </motion.div>
 
                   <motion.div variants={itemVariants} className="md:col-span-4 md:row-span-2">
                     <GlassCard className="h-full flex flex-col justify-center p-10 border-cyan-500/100">

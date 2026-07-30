@@ -60,7 +60,7 @@ const GlassCard = ({ children, className = "" }) => {
           transform: "translateZ(50px)",
           transformStyle: "preserve-3d"
         }}
-        className="relative z-10"
+        className="relative z-10 h-full"
       >
         {children}
       </div>
