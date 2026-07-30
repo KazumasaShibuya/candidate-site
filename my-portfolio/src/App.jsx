@@ -4,12 +4,12 @@ import GlassCard from './components/GlassCard';
 import TechOrbit from './components/TechOrbit';
 import TokyoTime from './components/TokyoTime';
 import { FaInstagram } from 'react-icons/fa';
-import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaCheck } from "react-icons/fa";
+import { useState } from "react";
 import { useIsMobile } from './hooks/useIsMobile';
 import { useLanguage } from './context/LanguageContext';
 import { data as enData } from './data/en';
 import { data as jaData } from './data/ja';
-import LanguageToggle from './components/LanguageToggle';
 import profilePhoto from './assets/akihiro.jpg';
 import profilePhotoBig from './assets/akihirobig.jpg';
 
@@ -46,6 +46,22 @@ const headerVariants = {
 function App() {
   const data = jaData;
   const isMobile = useIsMobile();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("nakagawa@shibuyasyoukai.com");
+      setEmailCopied(true);
+
+      setTimeout(() => {
+        setEmailCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
+  
   return (
     <div className="min-h-screen bg-sky-100 text-neutral-200 relative font-sans selection:bg-purple-500/30">
 
@@ -327,6 +343,36 @@ function App() {
                 </GlassCard>
               </motion.div>
 
+              {/* Email (1x1 Square) */}
+                  <motion.div variants={itemVariants} className="aspect-square">
+                    <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
+                      <button
+                        onClick={copyEmail}
+                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-20 cursor-pointer"
+                      >
+                        {emailCopied ? (
+                          <FaCheck
+                            size={72}
+                            className="text-green-500 mb-6"
+                          />
+                        ) : (
+                          <FaEnvelope
+                            size={72}
+                            className="text-blue-500 mb-6"
+                          />
+                        )}
+
+                        <span className="text-lg font-semibold text-neutral-800">
+                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
+                        </span>
+
+                        <span className="mt-2 text-m text-neutral-500 break-all">
+                          nakagawa@shibuyasyoukai.com
+                        </span>
+                      </button>
+                    </GlassCard>
+                  </motion.div>
+
               {/* 4. Priorities (2x1 Rectangle) */}
               <motion.div variants={itemVariants} className="md:col-span-2 h-full">
                 <GlassCard className="h-full flex flex-col justify-between p-8">
@@ -470,34 +516,33 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                  {/* email (1x1 Square) */}
+                  {/* Email (1x1 Square) */}
                   <motion.div variants={itemVariants} className="aspect-square">
                     <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
-                      <a
-                        href="mailto:info@example.com?subject=お問い合わせ"
-                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-4 text-center"
+                      <button
+                        onClick={copyEmail}
+                        className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-8 cursor-pointer"
                       >
-                        <FaEnvelope
-                          size={72}
-                          className="text-blue-500 mb-6"
-                        />
+                        {emailCopied ? (
+                          <FaCheck
+                            size={72}
+                            className="text-green-500 mb-6"
+                          />
+                        ) : (
+                          <FaEnvelope
+                            size={72}
+                            className="text-blue-500 mb-6"
+                          />
+                        )}
 
                         <span className="text-lg font-semibold text-neutral-800">
-                          お問い合わせ
+                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
                         </span>
 
-                        <span className="mt-2 text-sm text-neutral-500 break-all">
+                        <span className="mt-2 text-m text-neutral-500 break-all">
                           nakagawa@shibuyasyoukai.com
                         </span>
-                      </a>
-                    </GlassCard>
-                  </motion.div>
-
-                  {/* 3. Tokyo Time (1x1 Square) */}
-                  <motion.div variants={itemVariants} className="aspect-square">
-                    {/* Add flex and flex-col to GlassCard to enable centering */}
-                    <GlassCard className="h-full flex flex-col items-center justify-center">
-                      <TokyoTime />
+                      </button>
                     </GlassCard>
                   </motion.div>
 
