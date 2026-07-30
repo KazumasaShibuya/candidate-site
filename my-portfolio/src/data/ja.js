@@ -75,7 +75,8 @@ vision: {
     ]
   },
   insta: "フォロー",
-  stack: "スタック",
+  phone: "070-1596-6154",
+  email: "nakagawa@shibuyasyoukai.com",
   languages: {
     heading: "言語",
     items: [

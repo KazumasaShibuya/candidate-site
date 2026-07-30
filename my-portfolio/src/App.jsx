@@ -4,7 +4,7 @@ import GlassCard from './components/GlassCard';
 import TechOrbit from './components/TechOrbit';
 import TokyoTime from './components/TokyoTime';
 import { FaInstagram } from 'react-icons/fa';
-import { FaEnvelope, FaCheck } from "react-icons/fa";
+import { FaEnvelope, FaCheck, FaPhone} from "react-icons/fa";
 import { useState } from "react";
 import { useIsMobile } from './hooks/useIsMobile';
 import { useLanguage } from './context/LanguageContext';
@@ -50,7 +50,7 @@ function App() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("nakagawa@shibuyasyoukai.com");
+      await navigator.clipboard.writeText(data.email);
       setEmailCopied(true);
 
       setTimeout(() => {
@@ -58,6 +58,21 @@ function App() {
       }, 2000);
     } catch (err) {
       console.error("Failed to copy email:", err);
+    }
+  };
+
+  const [phoneCopied, setPhoneCopied] = useState(false);
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(data.phone);
+      setPhoneCopied(true);
+
+      setTimeout(() => {
+        setPhoneCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy phone number:", err);
     }
   };
 
@@ -165,7 +180,7 @@ function App() {
 
                 {/* Matching Glow Layer - now perfectly anchored to the span above */}
                 <span
-                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4 blur-lg opacity-15 scale-110"
+                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4 blur-lg opacity-50 scale-110"
                   aria-hidden="true"
                 >
                   {data.lastname}
@@ -352,29 +367,57 @@ function App() {
                       >
                         {emailCopied ? (
                           <FaCheck
-                            size={72}
-                            className="text-green-500 mb-6"
+                            className="w-24 h-24 text-green-500 mb-6"
                           />
                         ) : (
                           <FaEnvelope
-                            size={72}
-                            className="text-blue-500 mb-6"
+                            className="w-24 h-24 text-blue-500 mb-6"
                           />
                         )}
 
-                        <span className="text-lg font-semibold text-neutral-800">
+                        <span className="text-xl font-semibold text-neutral-800">
                           {emailCopied ? "コピーしました！" : "お問い合わせ"}
                         </span>
 
-                        <span className="mt-2 text-m text-neutral-500 break-all">
-                          nakagawa@shibuyasyoukai.com
+                        <span className="mt-2 text-xl text-neutral-500 break-all">
+                          {data.email}
                         </span>
                       </button>
                     </GlassCard>
                   </motion.div>
 
-              {/* 4. Priorities (2x1 Rectangle) */}
-              <motion.div variants={itemVariants} className="md:col-span-2 h-full">
+              {/* Phone (1x1 Square) */}
+                <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
+                    <button
+                      onClick={copyPhone}
+                      className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-20 cursor-pointer"
+                    >
+                      {phoneCopied ? (
+                        <FaCheck
+                          className="w-24 h-24 text-green-500 mb-6"
+                        />
+                      ) : (
+                        <FaPhone
+                          className="w-24 h-24 text-green-500 mb-6"
+                        />
+                      )}
+
+                      <span className="text-xl font-semibold text-neutral-800">
+                        {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                      </span>
+
+                      <span className="mt-2 text-xl text-neutral-500 break-all">
+                        {data.phone}
+                      </span>
+                    </button>
+                  </GlassCard>
+                </motion.div>
+
+
+
+
+              {/* <motion.div variants={itemVariants} className="md:col-span-2 h-full">
                 <GlassCard className="h-full flex flex-col justify-between p-8">
                   <div>
                       <h3 className="text-lg font-bold text-neutral-800 uppercase">{data.priorities.heading}</h3>
@@ -409,25 +452,19 @@ function App() {
                 </GlassCard>
               </motion.div>
 
-        
-
-              {/* 3. Tokyo Time (1x1 Square) */}
               <motion.div variants={itemVariants} className="aspect-square">
-                {/* Add flex and flex-col to GlassCard to enable centering */}
                 <GlassCard className="h-full flex flex-col items-center justify-center">
                   <TokyoTime />
                 </GlassCard>
               </motion.div>
               
-
-              {/* 7. Extra Buffer Card to fill space (2x1 Rectangle) */}
               <motion.div variants={itemVariants} className="md:col-span-2">
                 <GlassCard className="h-full flex items-center p-8">
                   <p className="text-s font-mono text-neutral-600 leading-relaxed uppercase">
                     Focused on the world's biology, technology, problems, and solutions.
                   </p>
                 </GlassCard>
-              </motion.div>
+              </motion.div> */}
             </div>
           </>
         
@@ -506,7 +543,7 @@ function App() {
                         {/* 2. Color starts white/gray and changes to instagram pink only on hover */}
                         <FaInstagram
                           size={85}
-                          className="text-neutral-600 group-hover:text-pink-500 transition-colors duration-150 scale-130 translate-y-13"
+                          className="text-neutral-600 text-pink-500 scale-130 translate-y-13"
                         />
 
                         <span className="mt-6 text-[20px] font-mono uppercase tracking-[0.2em] text-neutral-800 translate-y-10 translate-x-1">
@@ -525,12 +562,12 @@ function App() {
                       >
                         {emailCopied ? (
                           <FaCheck
-                            size={72}
+                            size={85}
                             className="text-green-500 mb-6"
                           />
                         ) : (
                           <FaEnvelope
-                            size={72}
+                            size={85}
                             className="text-blue-500 mb-6"
                           />
                         )}
@@ -539,30 +576,51 @@ function App() {
                           {emailCopied ? "コピーしました！" : "お問い合わせ"}
                         </span>
 
-                        <span className="mt-2 text-m text-neutral-500 break-all">
+                        <span className="mt-2 text- text-neutral-500 break-all">
                           nakagawa@shibuyasyoukai.com
                         </span>
                       </button>
                     </GlassCard>
                   </motion.div>
 
-                  {/* 3. Tokyo Time (1x1 Square) */}
-                  <motion.div variants={itemVariants} className="aspect-square">
-                    {/* Add flex and flex-col to GlassCard to enable centering */}
-                    <GlassCard className="h-full flex flex-col items-center justify-center">
-                      <TokyoTime />
-                    </GlassCard>
-                  </motion.div>
+                  {/* Phone (1x1 Square) */}
+                    <motion.div variants={itemVariants} className="aspect-square">
+                      <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
+                        <button
+                          onClick={copyPhone}
+                          className="relative z-20 h-full w-full flex flex-col items-center justify-center p-1 text-center translate-y-10 cursor-pointer"
+                        >
+                          {phoneCopied ? (
+                            <FaCheck
+                              size={72}
+                              className="text-green-500 mb-6"
+                            />
+                          ) : (
+                            <FaPhone
+                              size={72}
+                              className="text-green-500 mb-6"
+                            />
+                          )}
 
-                  {/* Policy Card (2x2 Square) */}
+                          <span className="text-lg font-semibold text-neutral-800">
+                            {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                          </span>
+
+                          <span className="mt-2 text-lg text-neutral-500 break-all">
+                            {data.phone}
+                          </span>
+                        </button>
+                      </GlassCard>
+                    </motion.div>
+
                   <motion.div variants={itemVariants} className="md:col-span-4 md:row-span-2">
                     <GlassCard className="h-full flex flex-col justify-center p-10 border-cyan-500/100">
                       <h2 className="text-3xl font-bold text-neutral-800 mb-6 uppercase">{data.policy.heading}
                         <div className="relative mt-1 w-14">
-                          {/* Base bar */}
+                      
                           <div className="h-1.5 w-18 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto]" />
                           
-                          {/* Glow layer */}
+                 
                           <div
                             className="absolute inset-0 h-1.5 w-18 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] blur-sm opacity-30"
                             aria-hidden="true"
@@ -597,10 +655,7 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                
-
-                  {/* 4. Priorities (2x1 Rectangle) */}
-                  <motion.div variants={itemVariants} className="md:col-span-2 h-full">
+                {/*  <motion.div variants={itemVariants} className="md:col-span-2 h-full">
                     <GlassCard className="h-full flex flex-col justify-between p-8">
                       <div>
                         <h3 className="text-lg font-bold text-neutral-800 uppercase">{data.priorities.heading}</h3>
@@ -609,7 +664,7 @@ function App() {
                           <h3 className="text-[18px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.priorities.items[0].title}</h3>
                           <span className="text-[14px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.priorities.items[0].status}</span>
                         </div>
-                        <div className="h-2 w-full bg-white/5 rounded-full relative"> {/* Removed overflow-hidden */}
+                        <div className="h-2 w-full bg-white/5 rounded-full relative"> 
                           <div
                             className="h-full w-[50%] animate-rgb-wave rounded-full bg-gradient-to-r from-red-500 via-green-500 via-blue-500 via-purple-500 to-red-500 bg-[length:200%_auto] 
                   relative z-10"
@@ -635,7 +690,6 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                  {/* 5. Buffer: Languages (2x1 Rectangle) */}
                   <motion.div variants={itemVariants} className="md:col-span-2 h-full">
                     <GlassCard className="h-full flex flex-col justify-between p-8">
                       <div>
@@ -645,7 +699,7 @@ function App() {
                           <h3 className="text-[18px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.languages.items[0].title}</h3>
                           <span className="text-[14px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.languages.items[0].fluency}</span>
                         </div>
-                        <div className="h-2 w-full bg-white/5 rounded-full relative"> {/* Removed overflow-hidden */}
+                        <div className="h-2 w-full bg-white/5 rounded-full relative"> 
                           <div
                             className="h-full w-[100%] animate-rgb-wave rounded-full bg-gradient-to-r from-red-500 via-green-500 via-blue-500 via-purple-500 to-red-500 bg-[length:200%_auto] 
                   relative z-10"
@@ -664,7 +718,7 @@ function App() {
                           <h3 className="text-[18px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.languages.items[1].title}</h3>
                           <span className="text-[14px] font-mono text-neutral-800 uppercase tracking-[0.2em]">{data.languages.items[1].fluency}</span>
                         </div>
-                        <div className="h-2 w-full bg-white/5 rounded-full relative"> {/* Removed overflow-hidden */}
+                        <div className="h-2 w-full bg-white/5 rounded-full relative"> 
                           <div
                             className="h-full w-[85%] animate-rgb-wave rounded-full bg-gradient-to-r from-red-500 via-green-500 via-blue-500 via-purple-500 to-red-500 bg-[length:200%_auto] 
                   relative z-10"
@@ -680,7 +734,6 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                  {/* 6. Stack Card (2x2 Square - Pushed Right) */}
                   <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-2 aspect-square">
                     <GlassCard className="h-full flex flex-col overflow-hidden relative">
                       <div className="">
@@ -693,14 +746,13 @@ function App() {
                     </GlassCard>
                   </motion.div>
 
-                  {/* 7. Extra Buffer Card to fill space (2x1 Rectangle) */}
                   <motion.div variants={itemVariants} className="md:col-span-2">
                     <GlassCard className="h-full flex items-center p-8">
                       <p className="text-s font-mono text-neutral-600 leading-relaxed uppercase">
                         Focused on the world's biology, technology, problems, and solutions.
                       </p>
                     </GlassCard>
-                  </motion.div>
+                  </motion.div> */}
                 </div>
               </>
             )}
