@@ -165,22 +165,22 @@ function App() {
         {isMobile ? (
           <>
             <motion.header variants={headerVariants} className="mb-16">
-            <h1 className="text-6xl font-bold tracking-tighter text-neutral-800">
+            <h1 className="text-7xl font-bold tracking-tighter text-neutral-800">
               {/* Wrap the last name and its glow in a relative container */}
               <p className="text-xl text-neutral-800 tracking-normal font-normal">
                 <span>{data.furigana_lastname}</span>
-                <span className="ml-12">{data.furigana_firstname}</span>
+                <span className="ml-18">{data.furigana_firstname}</span>
               </p>
               <span className="relative inline-block">
                 <span
-                  className="animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4"
+                  className="animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2"
                 >
                   {data.lastname}
                 </span>
 
                 {/* Matching Glow Layer - now perfectly anchored to the span above */}
                 <span
-                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4 blur-lg opacity-50 scale-110"
+                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 blur-lg opacity-40 scale-110"
                   aria-hidden="true"
                 >
                   {data.lastname}
@@ -206,14 +206,14 @@ function App() {
               </p>
               <span className="relative inline-block">
                 <span
-                  className="animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4"
+                  className="animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2"
                 >
                   {data.lastname}
                 </span>
 
                 {/* Matching Glow Layer - now perfectly anchored to the span above */}
                 <span
-                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 px-4 -my-2 -mx-4 blur-lg opacity-15 scale-110"
+                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 blur-lg opacity-15 scale-110"
                   aria-hidden="true"
                 >
                   {data.lastname}
