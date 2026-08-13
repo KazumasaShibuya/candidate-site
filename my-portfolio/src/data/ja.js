@@ -1,5 +1,5 @@
 export const data = {
-  firstname: "彰寛",
+  firstname: "あきひろ",
   lastname: "中川",
   furigana_lastname: "なかがわ",
   furigana_firstname: "あきひろ",

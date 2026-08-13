@@ -169,7 +169,6 @@ function App() {
               {/* Wrap the last name and its glow in a relative container */}
               <p className="text-xl text-neutral-800 tracking-normal font-normal">
                 <span>{data.furigana_lastname}</span>
-                <span className="ml-18">{data.furigana_firstname}</span>
               </p>
               <span className="relative inline-block">
                 <span
@@ -202,7 +201,6 @@ function App() {
               {/* Wrap the last name and its glow in a relative container */}
               <p className="text-2xl text-neutral-800 tracking-normal font-normal">
                 <span>{data.furigana_lastname}</span>
-                <span className="ml-27">{data.furigana_firstname}</span>
               </p>
               <span className="relative inline-block">
                 <span
