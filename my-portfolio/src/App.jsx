@@ -377,7 +377,7 @@ function App() {
                         <span className="text-sm font-semibold text-neutral-800">
                           {emailCopied ? "コピーしました！" : "お問い合わせ"}
                         </span>
-                        <span className="text-l text-neutral-500 break-all">
+                        <span className="text-sm text-neutral-500 break-all">
                           <p>nakgawa@</p>
                           <p>shibuyasyoukai.com</p>
                         </span>
@@ -396,7 +396,7 @@ function App() {
                         <span className="text-sm font-semibold text-neutral-800">
                           {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
                         </span>
-                        <span className="text-xl text-neutral-500 break-all">
+                        <span className="text-lg text-neutral-500 break-all">
                           {data.phone}
                         </span>
                       </button>
