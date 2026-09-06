@@ -1,15 +1,11 @@
 import React, { useRef } from "react";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 const GlassCard = ({ children, className = "" }) => {
   const ref = useRef(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
-  const rotateX = useSpring(useMotionValue(0), springConfig);
-  const rotateY = useSpring(useMotionValue(0), springConfig);
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
@@ -19,25 +15,12 @@ const GlassCard = ({ children, className = "" }) => {
 
     x.set(mouseX);
     y.set(mouseY);
-
-  };
-
-  const handleMouseLeave = () => {
-    rotateX.set(0);
-    rotateY.set(0);
   };
 
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        willChange: "transform", 
-      }}
       className={`relative overflow-hidden rounded-3xl border border-black/10 bg-white/[0.5] backdrop-blur-xl group ${className}`}
     >
       {/* Moving Spotlight */}
@@ -54,14 +37,8 @@ const GlassCard = ({ children, className = "" }) => {
         }}
       />
 
-      {/* Internal Content with 3D Pop */}
-      <div
-        style={{
-          transform: "translateZ(50px)",
-          transformStyle: "preserve-3d"
-        }}
-        className="relative z-10 h-full"
-      >
+      {/* Internal Content */}
+      <div className="relative z-10 h-full">
         {children}
       </div>
     </motion.div>

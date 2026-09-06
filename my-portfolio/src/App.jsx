@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import GlassCard from './components/GlassCard';
+import PhotoGallery from './components/PhotoGallery';
 import TechOrbit from './components/TechOrbit';
 import TokyoTime from './components/TokyoTime';
 import { FaInstagram } from 'react-icons/fa';
@@ -12,6 +13,9 @@ import { data as enData } from './data/en';
 import { data as jaData } from './data/ja';
 import profilePhoto from './assets/akihiro.jpg';
 import profilePhotoBig from './assets/akihirobig.jpg';
+import photo1 from './assets/gallery/photo1.jpg';
+import photo2 from './assets/gallery/photo2.jpg';
+import photo3 from './assets/gallery/photo3.jpg';
 
 // 1. Define Animation Variants for the staggered load
 const containerVariants = {
@@ -42,6 +46,12 @@ const headerVariants = {
     transition: { type: 'spring', stiffness: 30, damping: 10 },
   },
 };
+
+const galleryPhotos = [
+  { src: photo1, alt: '街頭演説' },
+  { src: photo2, alt: '地域イベント' },
+  { src: photo3, alt: '市民との対話' },
+];
 
 function App() {
   const data = jaData;
@@ -186,7 +196,9 @@ function App() {
                 </span>
               </span>
 
-              {" "}{data.firstname}
+              <p>
+                {" "}{data.firstname}
+              </p>
             </h1>
             <p className="text-xl text-neutral-800 font-mono mt-4 mb-4">{data.title}</p>
           </motion.header>
@@ -334,8 +346,66 @@ function App() {
                 </GlassCard>
               </motion.div>
 
-              {/* Instagram (1x1 Square) */}
+                {/* Contact & Social (combined card) */}
                 <motion.div variants={itemVariants} className="aspect-square">
+                  <GlassCard className="h-full p-0 overflow-hidden border-pink-500/100">
+                    <div className="grid grid-cols-2 grid-rows-2 h-full divide-black/10">
+
+                      {/* Instagram - spans full width on top */}
+                      <a
+                        href="https://www.instagram.com/nakagawa.akihiro_/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="col-span-2 group relative z-20 flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-pink-500/5 transition-colors border-b border-black/10"
+                      >
+                        <FaInstagram className="w-20 h-20 text-pink-500 group-hover:scale-110 transition-transform" />
+                        <span className="text-base font-semibold text-neutral-800">
+                          {data.insta}
+                        </span>
+                      </a>
+
+                      {/* Email - bottom left */}
+                      <button
+                        onClick={copyEmail}
+                        className="group relative z-20 flex flex-col items-center justify-center gap-2 p-3 text-center cursor-pointer hover:bg-blue-500/5 transition-colors border-r border-black/10 translate-y-3"
+                      >
+                        {emailCopied ? (
+                          <FaCheck className="w-15 h-15 text-green-500" />
+                        ) : (
+                          <FaEnvelope className="w-15 h-15 text-blue-500 group-hover:scale-110 transition-transform" />
+                        )}
+                        <span className="text-sm font-semibold text-neutral-800">
+                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
+                        </span>
+                        <span className="text-l text-neutral-500 break-all">
+                          <p>nakgawa@</p>
+                          <p>shibuyasyoukai.com</p>
+                        </span>
+                      </button>
+
+                      {/* Phone - bottom right */}
+                      <button
+                        onClick={copyPhone}
+                        className="group relative z-20 flex flex-col items-center justify-center gap-2 p-3 text-center cursor-pointer hover:bg-green-500/5 transition-colors"
+                      >
+                        {phoneCopied ? (
+                          <FaCheck className="w-15 h-15 text-green-500" />
+                        ) : (
+                          <FaPhone className="w-15 h-15 text-green-500 group-hover:scale-110 transition-transform" />
+                        )}
+                        <span className="text-sm font-semibold text-neutral-800">
+                          {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                        </span>
+                        <span className="text-xl text-neutral-500 break-all">
+                          {data.phone}
+                        </span>
+                      </button>
+
+                    </div>
+                  </GlassCard>
+                </motion.div>
+
+                {/* <motion.div variants={itemVariants} className="aspect-square">
                   <GlassCard className="h-full p-0 overflow-hidden group border-pink-500/100 hover:border-blue-500/50 transition-colors">
                     <a
                       href="https://www.instagram.com/nakagawa.akihiro_/"
@@ -354,8 +424,6 @@ function App() {
                   </GlassCard>
                 </motion.div>
 
-
-                {/* Email (1x1 Square) */}
                 <motion.div variants={itemVariants} className="aspect-square">
                   <GlassCard className="h-full p-0 overflow-hidden group border-blue-500/100">
                     <button
@@ -379,8 +447,6 @@ function App() {
                   </GlassCard>
                 </motion.div>
 
-
-                {/* Phone (1x1 Square) */}
                 <motion.div variants={itemVariants} className="aspect-square">
                   <GlassCard className="h-full p-0 overflow-hidden group border-green-500/100">
                     <button
@@ -402,9 +468,7 @@ function App() {
                       </span>
                     </button>
                   </GlassCard>
-                </motion.div>
-
-
+                </motion.div> */}
 
 
               {/* <motion.div variants={itemVariants} className="md:col-span-2 h-full">
@@ -632,6 +696,14 @@ function App() {
                       </table>
                     </GlassCard>
                   </motion.div>
+
+                  {/* <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-2 aspect-square">
+                    <PhotoGallery photos={galleryPhotos} interval={5000} />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants} className="md:col-span-2 md:row-span-2 aspect-square">
+                    <PhotoGallery photos={galleryPhotos} interval={5000} />
+                  </motion.div> */}
 
                 {/*  <motion.div variants={itemVariants} className="md:col-span-2 h-full">
                     <GlassCard className="h-full flex flex-col justify-between p-8">
