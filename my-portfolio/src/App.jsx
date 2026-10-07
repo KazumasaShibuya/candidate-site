@@ -189,7 +189,7 @@ function App() {
 
                 {/* Matching Glow Layer - now perfectly anchored to the span above */}
                 <span
-                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 blur-lg opacity-40 scale-110"
+                  className="absolute inset-0 animate-rgb-wave bg-gradient-to-r from-blue-600 via-cyan-500 via-green-500 via-emerald-500 to-blue-600 bg-[length:200%_auto] bg-clip-text text-transparent inline-block py-2 blur-lg opacity-30 scale-110"
                   aria-hidden="true"
                 >
                   {data.lastname}
@@ -347,41 +347,44 @@ function App() {
               </motion.div>
 
                 {/* Contact & Social (combined card) */}
+                {/* Contact & Social (combined card) */}
                 <motion.div variants={itemVariants} className="aspect-square">
-                  <GlassCard className="h-full p-0 overflow-hidden border-pink-500/100">
+                  <GlassCard className="h-full p-0 overflow-hidden border-blue-500/100">
                     <div className="grid grid-cols-2 grid-rows-2 h-full divide-black/10">
 
-                      {/* Instagram - spans full width on top */}
+                      {/* Email - spans full width on top */}
+                      <button
+                        onClick={copyEmail}
+                        className="col-span-2 group relative z-20 flex flex-col items-center justify-center gap-1 p-4 text-center cursor-pointer hover:bg-blue-500/5 transition-colors border-b border-black/10"
+                      >
+                        {emailCopied ? (
+                          <FaCheck className="w-20 h-20 text-green-500" />
+                        ) : (
+                          <FaEnvelope className="w-20 h-20 text-blue-500 group-hover:scale-110 transition-transform" />
+                        )}
+                        <span className="text-base font-semibold text-neutral-800">
+                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
+                        </span>
+                        <span className="text-m text-neutral-500 break-all">
+                          <p>nakgawa@shibuyasyoukai.com</p>
+                        </span>
+                      </button>
+
+                      {/* Instagram - bottom left */}
                       <a
                         href="https://www.instagram.com/nakagawa.akihiro_/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="col-span-2 group relative z-20 flex flex-col items-center justify-center gap-2 p-4 text-center hover:bg-pink-500/5 transition-colors border-b border-black/10"
+                        className="group relative z-20 flex flex-col items-center justify-center gap-2 p-3 text-center hover:bg-pink-500/5 transition-colors border-r border-black/10"
                       >
-                        <FaInstagram className="w-20 h-20 text-pink-500 group-hover:scale-110 transition-transform" />
-                        <span className="text-base font-semibold text-neutral-800">
+                        <FaInstagram className="w-15 h-15 text-pink-500 group-hover:scale-110 transition-transform" />
+                        <span className="text-sm font-semibold text-neutral-800 line-clamp-1">
                           {data.insta}
                         </span>
+                        <span className="text-sm text-neutral-500 break-all line-clamp-1">
+                          @nakagawa.akihiro_
+                        </span>
                       </a>
-
-                      {/* Email - bottom left */}
-                      <button
-                        onClick={copyEmail}
-                        className="group relative z-20 flex flex-col items-center justify-center gap-2 p-3 text-center cursor-pointer hover:bg-blue-500/5 transition-colors border-r border-black/10 translate-y-3"
-                      >
-                        {emailCopied ? (
-                          <FaCheck className="w-15 h-15 text-green-500" />
-                        ) : (
-                          <FaEnvelope className="w-15 h-15 text-blue-500 group-hover:scale-110 transition-transform" />
-                        )}
-                        <span className="text-sm font-semibold text-neutral-800">
-                          {emailCopied ? "コピーしました！" : "お問い合わせ"}
-                        </span>
-                        <span className="text-sm text-neutral-500 break-all">
-                          <p>nakgawa@</p>
-                          <p>shibuyasyoukai.com</p>
-                        </span>
-                      </button>
 
                       {/* Phone - bottom right */}
                       <button
@@ -393,10 +396,10 @@ function App() {
                         ) : (
                           <FaPhone className="w-15 h-15 text-green-500 group-hover:scale-110 transition-transform" />
                         )}
-                        <span className="text-sm font-semibold text-neutral-800">
-                          {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                        <span className="text-sm font-semibold text-neutral-800 line-clamp-1">
+                          {phoneCopied ? "コピーしました！" : "お問い合わせ"}
                         </span>
-                        <span className="text-lg text-neutral-500 break-all">
+                        <span className="text-m text-neutral-500 break-all line-clamp-1">
                           {data.phone}
                         </span>
                       </button>
@@ -601,6 +604,9 @@ function App() {
                       <span className="text-xl font-semibold text-neutral-800">
                         {data.insta}
                       </span>
+                      <span className="text-2xl text-neutral-500 break-all line-clamp-1">
+                          @nakagawa.akihiro_
+                      </span>
                     </a>
                   </GlassCard>
                 </motion.div>
@@ -645,7 +651,7 @@ function App() {
                       )}
 
                       <span className="text-xl font-semibold text-neutral-800">
-                        {phoneCopied ? "コピーしました！" : "お電話でのお問い合わせ"}
+                        {phoneCopied ? "コピーしました！" : "お問い合わせ"}
                       </span>
 
                       <span className="text-2xl text-neutral-500 break-all">
