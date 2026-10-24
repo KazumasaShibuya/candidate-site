@@ -3,7 +3,7 @@ export const data = {
   lastname: "中川",
   furigana_lastname: "なかがわ",
   furigana_firstname: "あきひろ",
-  title: "完全無所属・最年少25歳",
+  title: "日本維新の会公認候補・最年少25歳",
   about: {
     heading: "自己紹介",
     body: [
